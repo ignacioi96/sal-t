@@ -12,3 +12,10 @@ images/optimized/deco-video.mp4
 
 # Claude config
 .claude/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
