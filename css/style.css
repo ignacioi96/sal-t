@@ -233,17 +233,10 @@ img {
   margin-bottom: 2rem;
 }
 
-.about-layout {
-  display: grid;
-  grid-template-columns: 3fr 2fr;
-  gap: 3rem;
-  align-items: end;
-}
-
 .about-text {
   font-size: 1.1rem;
   line-height: 1.8;
-  max-width: 600px;
+  max-width: 700px;
 }
 
 .about-divider {
@@ -254,18 +247,40 @@ img {
 }
 
 .about-divider--second {
-  margin-left: 8rem;
+  margin-left: 33vw;
+}
+
+.about-lower {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto auto;
+  gap: 0 3rem;
+  align-items: start;
 }
 
 .about-mediums {
+  grid-column: 1;
+  grid-row: 1;
   font-size: 1.05rem;
   font-style: italic;
   color: var(--text-light);
-  margin-left: 2rem;
+}
+
+.about-divider--second {
+  grid-column: 1;
+  grid-row: 2;
 }
 
 .about-artists {
-  margin-top: 3rem;
+  grid-column: 1;
+  grid-row: 3;
+  margin-top: 1rem;
+}
+
+.about-lower__image {
+  grid-column: 2;
+  grid-row: 1 / 4;
+  align-self: start;
 }
 
 .about-artists p {
@@ -274,18 +289,11 @@ img {
   margin-bottom: 0.6rem;
 }
 
-.about-image-wrap {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-}
-
 .circle-image {
   width: 320px;
   height: 320px;
   border-radius: 50%;
   overflow: hidden;
-  flex-shrink: 0;
 }
 
 .circle-image img {
@@ -304,7 +312,7 @@ img {
 
 /* Change this value to adjust how far the labels sit from the circle edges */
 .pieces-categories {
-  --orbit-padding: 18;
+  --orbit-padding: 28;
   width: 100%;
   margin-top: 1rem;
   display: flex;
@@ -316,6 +324,13 @@ img {
   max-width: 900px;
   max-height: 70vh;
   height: auto;
+}
+
+@media (max-width: 600px) {
+  .pieces-circles-svg {
+    max-height: none;
+    max-width: 100%;
+  }
 }
 
 .pieces-circles-svg circle {
@@ -512,12 +527,25 @@ img {
    =============================== */
 @media (max-width: 900px) {
 
-  .about-layout {
+  .about-lower {
     grid-template-columns: 1fr;
   }
-  .about-image-wrap {
-    justify-content: center;
-    padding-top: 1rem;
+  .about-mediums {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .about-divider--second {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .about-lower__image {
+    grid-column: 1;
+    grid-row: 3;
+    justify-self: center;
+  }
+  .about-artists {
+    grid-column: 1;
+    grid-row: 4;
   }
 
   .pieces-circles-svg {
@@ -552,6 +580,6 @@ img {
     height: 250px;
   }
   .about-divider--second {
-    margin-left: 2rem;
+    margin-left: 33vw;
   }
 }

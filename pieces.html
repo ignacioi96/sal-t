@@ -31,12 +31,15 @@
       <svg class="pieces-circles-svg" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid meet">
         <defs>
           <clipPath id="clip-artistic"><circle cx="170" cy="350" r="130"/></clipPath>
+          <path id="orbit-artistic-cw" />
           <path id="orbit-artistic-ccw" />
 
           <clipPath id="clip-audiovisual"><circle cx="380" cy="290" r="165"/></clipPath>
           <path id="orbit-audiovisual-cw" />
+          <path id="orbit-audiovisual-ccw" />
 
           <clipPath id="clip-performance"><circle cx="640" cy="320" r="210"/></clipPath>
+          <path id="orbit-performance-cw" />
           <path id="orbit-performance-ccw" />
         </defs>
 
@@ -57,7 +60,7 @@
         </a>
         <!-- Above center → cw path, ~18% puts it just right of top-center -->
         <text class="pieces-label">
-          <textPath href="#orbit-audiovisual-cw" startOffset="18%">Audio/Visual</textPath>
+          <textPath href="#orbit-audiovisual-cw" startOffset="%35">Audio/Visual</textPath>
         </text>
 
         <!-- Circle 3: Performance (largest, front) -->
@@ -183,14 +186,12 @@
     }, { threshold: 0 });
     observer.observe(hero);
 
-    // Generate orbit paths from --orbit-padding CSS variable
+    const svg = document.querySelector('.pieces-circles-svg');
     const padding = Number(
       getComputedStyle(document.querySelector('.pieces-categories'))
         .getPropertyValue('--orbit-padding')
     ) || 18;
 
-    // cw:  sweep-flag = 1 (clockwise)
-    // ccw: sweep-flag = 0 (counter-clockwise)
     function orbitPath(cx, cy, r, direction) {
       const r2 = r + padding;
       const d2 = r2 * 2;
@@ -198,9 +199,78 @@
       return `M ${cx},${cy} m -${r2},0 a ${r2},${r2} 0 1,${sweep} ${d2},0 a ${r2},${r2} 0 1,${sweep} -${d2},0`;
     }
 
-    document.getElementById('orbit-artistic-ccw').setAttribute('d', orbitPath(170, 350, 130, 'ccw'));
-    document.getElementById('orbit-audiovisual-cw').setAttribute('d', orbitPath(380, 290, 165, 'cw'));
-    document.getElementById('orbit-performance-ccw').setAttribute('d', orbitPath(640, 320, 210, 'ccw'));
+    // Layouts: desktop (horizontal) vs mobile (vertical)
+    const layouts = {
+      desktop: {
+        viewBox: '0 0 900 600',
+        circles: [
+          { id: 'artistic',    cx: 170, cy: 350, r: 130, dir: 'ccw', offset: '0%' },
+          { id: 'audiovisual', cx: 380, cy: 290, r: 165, dir: 'cw',  offset: '18%' },
+          { id: 'performance', cx: 640, cy: 320, r: 210, dir: 'ccw', offset: '18%' },
+        ]
+      },
+      mobile: {
+        viewBox: '0 0 500 960',
+        circles: [
+          { id: 'artistic',    cx: 200, cy: 180,  r: 130, dir: 'cw',  offset: '15%' },
+          { id: 'audiovisual', cx: 270, cy: 400,  r: 165, dir: 'cw',  offset: '35%' },
+          { id: 'performance', cx: 230, cy: 680,  r: 210, dir: 'ccw', offset: '7%' },
+        ]
+      }
+    };
+
+    function applyLayout(layout) {
+      svg.setAttribute('viewBox', layout.viewBox);
+      layout.circles.forEach(c => {
+        const d = c.r * 2;
+        // Update clipPath circle
+        const clip = document.querySelector(`#clip-${c.id} circle`);
+        clip.setAttribute('cx', c.cx);
+        clip.setAttribute('cy', c.cy);
+
+        // Update visible circle + image inside the <a>
+        const link = clip.closest('defs').parentElement
+          .querySelector(`a[href="#${c.id}"]`);
+        const circle = link.querySelector('circle');
+        circle.setAttribute('cx', c.cx);
+        circle.setAttribute('cy', c.cy);
+        circle.setAttribute('r', c.r);
+
+        const img = link.querySelector('image');
+        img.setAttribute('x', c.cx - c.r);
+        img.setAttribute('y', c.cy - c.r);
+        img.setAttribute('width', d);
+        img.setAttribute('height', d);
+
+        // Update orbit path
+        const orbitId = `orbit-${c.id}-${c.dir}`;
+        const orbitEl = document.getElementById(orbitId);
+        orbitEl.setAttribute('d', orbitPath(c.cx, c.cy, c.r, c.dir));
+
+        // Point the textPath to the correct orbit direction
+        const textPaths = svg.querySelectorAll('textPath');
+        textPaths.forEach(tp => {
+          const href = tp.getAttribute('href');
+          if (href.startsWith(`#orbit-${c.id}-`)) {
+            tp.setAttribute('href', `#${orbitId}`);
+            tp.setAttribute('startOffset', c.offset);
+          }
+        });
+      });
+    }
+
+    let currentLayout = null;
+    function updateLayout() {
+      const isMobile = window.innerWidth <= 600;
+      const layout = isMobile ? 'mobile' : 'desktop';
+      if (layout !== currentLayout) {
+        currentLayout = layout;
+        applyLayout(layouts[layout]);
+      }
+    }
+
+    updateLayout();
+    window.addEventListener('resize', updateLayout);
   </script>
 
   <nav class="site-nav">
