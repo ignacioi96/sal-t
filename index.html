@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sal(t) collective</title>
+  <meta name="description" content="sal(t) collective — Salt, in its humility, heals us. Two diasporic artists linked by water, song, and transformation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <main class="home">
+    <!-- Decorative circle: top-left (salt marble texture) -->
+    <div class="deco-circle deco-circle--top-left">
+      <img src="images/optimized/marble-texture.jpg" alt="Salt crystal texture">
+    </div>
+
+    <!-- Decorative circle: bottom-left (video loop) -->
+    <div class="deco-circle deco-circle--bottom-left">
+      <video autoplay muted loop playsinline>
+        <source src="images/optimized/deco-video-short.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- Hero circle composition -->
+    <div class="hero-circle">
+      <!-- Outer ring: "salt . garam . sal . asin" repeating -->
+      <svg class="hero-circle__text-ring" viewBox="0 0 520 520">
+        <defs>
+          <path id="outer-ring" d="M 260,260 m -245,0 a 245,245 0 1,1 490,0 a 245,245 0 1,1 -490,0" />
+        </defs>
+        <text font-family="'Cormorant Garamond', Georgia, serif" font-size="12" fill="#666" letter-spacing="1.5">
+          <textPath id="outer-ring-text" href="#outer-ring"></textPath>
+        </text>
+      </svg>
+
+      <!-- Inner ring: poetic text — full circle, English then Spanish -->
+      <svg class="hero-circle__poem-ring" viewBox="0 0 464 464">
+        <defs>
+          <path id="poem-circle" d="M 232,232 m -200,0 a 200,200 0 1,1 400,0 a 200,200 0 1,1 -400,0" />
+        </defs>
+        <text font-family="'Cormorant Garamond', Georgia, serif" font-size="13.5" fill="#444" font-style="italic">
+          <textPath id="poem-ring-text" href="#poem-circle"></textPath>
+        </text>
+      </svg>
+
+      <!-- Central photo — zoomed in and rotated 180° -->
+      <div class="hero-circle__image">
+        <img src="images/optimized/hero-portrait.jpg" alt="sal(t) collective">
+        <span class="hero-circle__title">sal(t) collective</span>
+      </div>
+    </div>
+  </main>
+
+  <nav class="site-nav">
+    <a href="about.html">About</a>
+    <a href="pieces.html">Pieces</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <script>
+    // Repeating ring: repeat a short phrase to fill the full circumference seamlessly.
+    async function fillRepeatingRing(pathId, textPathId, phrase) {
+      const path = document.getElementById(pathId);
+      const textPath = document.getElementById(textPathId);
+      const circumference = path.getTotalLength();
+
+      textPath.textContent = phrase;
+      await new Promise(r => requestAnimationFrame(r));
+
+      const phraseWidth = textPath.getComputedTextLength();
+      const repeats = Math.ceil(circumference / phraseWidth);
+      textPath.textContent = (phrase + ' ').repeat(repeats);
+
+      textPath.setAttribute('textLength', circumference);
+      textPath.setAttribute('lengthAdjust', 'spacing');
+    }
+
+    // Single-pass ring: stretch one block of text to fit the circle exactly once.
+    function fitTextToRing(pathId, textPathId, text) {
+      const path = document.getElementById(pathId);
+      const textPath = document.getElementById(textPathId);
+      const circumference = path.getTotalLength();
+
+      textPath.textContent = text;
+      textPath.setAttribute('textLength', circumference);
+      textPath.setAttribute('lengthAdjust', 'spacing');
+    }
+
+  
+    async function init() {
+      // Outer ring — repeating phrase
+      const outerRes = await fetch('content/outer-ring.txt');
+      const outerPhrase = (await outerRes.text()).trim();
+      await fillRepeatingRing('outer-ring', 'outer-ring-text', outerPhrase);
+
+      // Inner ring — English + Spanish, once around the full circle
+      const [topRes, bottomRes] = await Promise.all([
+        fetch('content/inner-ring-top.txt'),
+        fetch('content/inner-ring-bottom.txt')
+      ]);
+      const topText = (await topRes.text()).trim();
+      const bottomText = (await bottomRes.text()).trim();
+      fitTextToRing('poem-circle', 'poem-ring-text', topText + '     ' + bottomText);
+
+      // Convert spinning SVGs to canvas for performance
+      await new Promise(r => requestAnimationFrame(r));
+    }
+
+    init();
+  </script>
+</body>
+</html>

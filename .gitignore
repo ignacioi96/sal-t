@@ -1,0 +1,14 @@
+# Design files
+*.pdf
+
+# Original unoptimized images (only deploy optimized/)
+images/home/
+images/about/
+images/pieces/
+images/pexels-zetong-li-880728-13332942.jpg
+
+# Old uncompressed video
+images/optimized/deco-video.mp4
+
+# Claude config
+.claude/

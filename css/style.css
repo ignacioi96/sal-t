@@ -1,0 +1,558 @@
+/* ===== RESET & BASE ===== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #d9d4cb;
+  --text: #2c2c2c;
+  --text-light: #555;
+  --font-serif: 'Cormorant Garamond', 'Georgia', serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-serif);
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ===== BOTTOM NAVIGATION ===== */
+.site-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 6%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: linear-gradient(transparent, var(--bg) 30%);
+  pointer-events: none;
+}
+
+.site-nav a {
+  font-size: 1.5rem;
+  font-style: italic;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+  transition: opacity 0.3s;
+  pointer-events: auto;
+}
+
+.site-nav a:hover {
+  opacity: 0.6;
+}
+
+/* ===============================
+   HOME PAGE
+   =============================== */
+.home {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative circles */
+.deco-circle {
+  position: absolute;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.deco-circle img,
+.deco-circle video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* All home circles share one size anchor:
+   the smaller of 90% viewport width or the vertical space above the nav (~100vh - 7rem). */
+.home {
+  --hero: min(90vw, calc(100vh - 10rem));
+}
+
+/* Marble circle — desktop: offset from top-left corner */
+.deco-circle--top-left {
+    width: calc(var(--hero) * 0.25);
+    height: calc(var(--hero) * 0.25);
+    top: 3%;
+    left: 3%;
+}
+
+.deco-circle--bottom-left {
+  width: calc(var(--hero) * 0.13);
+  height: calc(var(--hero) * 0.13);
+  top: calc(55% + var(--hero) * 0.2 + 0.5rem);
+  left: calc(43% - var(--hero) * 0.45);
+}
+
+@media (max-width: 800px) {
+  .deco-circle--top-left {
+    width: calc(var(--hero) * 0.22);
+    height: calc(var(--hero) * 0.22);
+    top: 3%;
+    left: 3%;
+  }
+  .deco-circle--bottom-left {
+    width: calc(var(--hero) * 0.13);
+    height: calc(var(--hero) * 0.13);
+    top: calc(58% + var(--hero) * 0.2 + 0.5rem);
+    left: calc(47% - var(--hero) * 0.45);
+  }
+}
+
+/* Tablet: pull circles closer */
+@media (max-width: 600px) {
+  .deco-circle--top-left {
+    width: calc(var(--hero) * 0.25);
+    height: calc(var(--hero) * 0.25);
+    top: 2%;
+    left: 2%;
+  }
+  .deco-circle--bottom-left {
+    width: calc(var(--hero) * 0.13);
+    height: calc(var(--hero) * 0.13);
+    top: calc(60% + var(--hero) * 0.2 + 0.5rem);
+    left: calc(50% - var(--hero) * 0.45);
+  }
+}
+
+/* Mobile: tuck tight against the hero */
+@media (max-width: 350px) {
+  .deco-circle--top-left {
+    width: calc(var(--hero) * 0.40);
+    height: calc(var(--hero) * 0.40);
+    top: 10%;
+    left: 5%;
+  }
+  .deco-circle--bottom-left {
+    width: calc(var(--hero) * 0.3);
+    height: calc(var(--hero) * 0.3);
+    top: calc(62% + var(--hero) * 0.15 + 0.5rem);
+    left: calc(55% - var(--hero) * 0.45);
+  }
+}
+
+/* Hero circle — centered */
+.hero-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--hero);
+  height: var(--hero);
+  z-index: 2;
+}
+
+/* Outer text ring */
+.hero-circle__text-ring {
+  position: absolute;
+}
+
+/* Inner poetic text ring */
+.hero-circle__poem-ring {
+  position: absolute;
+  inset: 2px;
+}
+
+/* Central image circle — ~20% inset from outer edge */
+.hero-circle__image {
+  position: absolute;
+  inset: 11%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-circle__image img {
+  width: 130%;
+  height: 130%;
+  object-fit: cover;
+  object-position: center 60%;
+  transform: rotate(180deg) scale(2) translateY(16.5%);
+}
+
+.hero-circle__title {
+  position: absolute;
+  bottom: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #bbb;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+/* ===============================
+   ABOUT PAGE
+   =============================== */
+.about-page {
+  min-height: 100vh;
+  padding: 5rem 6% 8rem;
+  position: relative;
+}
+
+.page-title {
+  font-size: 2.2rem;
+  font-weight: 400;
+  font-style: italic;
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  text-decoration-thickness: 1px;
+  margin-bottom: 2rem;
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.about-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 600px;
+}
+
+.about-divider {
+  width: 150px;
+  height: 1px;
+  background: var(--text);
+  margin: 2.5rem 0;
+}
+
+.about-divider--second {
+  margin-left: 8rem;
+}
+
+.about-mediums {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--text-light);
+  margin-left: 2rem;
+}
+
+.about-artists {
+  margin-top: 3rem;
+}
+
+.about-artists p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+.about-image-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 4rem;
+}
+
+.circle-image {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.circle-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===============================
+   PIECES PAGE — HERO (3 overlapping circles)
+   =============================== */
+.pieces-page {
+  min-height: 100vh;
+  padding: 5rem 6% 8rem;
+}
+
+/* Change this value to adjust how far the labels sit from the circle edges */
+.pieces-categories {
+  --orbit-padding: 18;
+  width: 100%;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.pieces-circles-svg {
+  width: 100%;
+  max-width: 900px;
+  max-height: 70vh;
+  height: auto;
+}
+
+.pieces-circles-svg circle {
+  fill: #bbb;
+}
+
+.pieces-circles-svg a {
+  cursor: pointer;
+}
+
+.pieces-circles-svg a:hover circle,
+.pieces-circles-svg a:hover image {
+  filter: brightness(0.85);
+  transition: filter 0.3s;
+}
+
+.pieces-label {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-style: italic;
+  fill: var(--text);
+}
+
+.pieces-label--small {
+  font-size: 25px;
+}
+
+/* ===============================
+   PIECES — DETAIL SECTIONS
+   =============================== */
+.pieces-section {
+  padding: 5rem 6% 3rem;
+}
+
+.pieces-section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.pieces-section__title {
+  font-size: 2rem;
+  font-weight: 400;
+  font-style: italic;
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  text-decoration-thickness: 1px;
+}
+
+.pieces-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 900px;
+}
+
+.piece-card {
+  position: relative;
+  aspect-ratio: 1.1;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.piece-card:hover {
+  transform: scale(1.02);
+}
+
+.piece-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.piece-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.piece-card:hover .piece-card__overlay {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.piece-card__title {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 1rem;
+  line-height: 1.3;
+}
+
+/* Video/Art link — right aligned */
+.video-art-link {
+  margin-top: 1.5rem;
+  text-align: right;
+  max-width: 900px;
+}
+
+.video-art-link a {
+  font-size: 1.3rem;
+  font-style: italic;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+}
+
+/* Audio/Visual grid — 2 cards, centered */
+.pieces-grid--two {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===============================
+   CONTACT PAGE
+   =============================== */
+.contact-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 8rem;
+}
+
+.contact-section .page-title {
+  margin-bottom: 1.2rem;
+}
+
+.contact-email {
+  font-size: 1.15rem;
+  margin-bottom: 2.5rem;
+  color: var(--text-light);
+}
+
+.contact-socials {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.contact-socials li {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--text-light);
+}
+
+.contact-socials a {
+  color: var(--text-light);
+}
+
+/* ===== BACK TO TOP ===== */
+.back-to-top {
+  position: fixed;
+  bottom: 5rem;
+  right: 2rem;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--text);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--text);
+  text-decoration: none;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.back-to-top.visible:hover {
+  opacity: 0.5;
+}
+
+/* ===============================
+   RESPONSIVE
+   =============================== */
+@media (max-width: 900px) {
+
+  .about-layout {
+    grid-template-columns: 1fr;
+  }
+  .about-image-wrap {
+    justify-content: center;
+    padding-top: 1rem;
+  }
+
+  .pieces-circles-svg {
+    max-width: 80%;
+  }
+
+  .pieces-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .pieces-grid--two {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media (max-width: 600px) {
+  .hero-circle__title {
+    font-size: 1.1rem;
+  }
+
+  .page-title {
+    font-size: 1.7rem;
+  }
+  .pieces-grid {
+    grid-template-columns: 1fr;
+  }
+  .pieces-grid--two {
+    grid-template-columns: 1fr;
+  }
+  .circle-image {
+    width: 250px;
+    height: 250px;
+  }
+  .about-divider--second {
+    margin-left: 2rem;
+  }
+}
