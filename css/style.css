@@ -235,9 +235,9 @@ img {
 
 .about-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 2fr;
   gap: 3rem;
-  align-items: start;
+  align-items: end;
 }
 
 .about-text {
@@ -277,8 +277,7 @@ img {
 .about-image-wrap {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
-  padding-top: 4rem;
+  align-items: flex-end;
 }
 
 .circle-image {
