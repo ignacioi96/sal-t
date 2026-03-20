@@ -8,6 +8,7 @@
 }
 
 :root {
+  color-scheme: light only;
   --bg: #d9d4cb;
   --text: #2c2c2c;
   --text-light: #555;
@@ -113,10 +114,10 @@ img {
   left: calc(43% - var(--hero) * 0.45);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
   .deco-circle--top-left {
-    width: calc(var(--hero) * 0.22);
-    height: calc(var(--hero) * 0.22);
+    width: calc(var(--hero) * 0.20);
+    height: calc(var(--hero) * 0.20);
     top: 7%;
     left: 7%;
   }
