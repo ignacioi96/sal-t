@@ -20,10 +20,25 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* Force all colors explicitly so dark mode / Smart Invert can't hide text */
 @media (prefers-color-scheme: dark) {
   html {
-    background-color: #d9d4cb !important;
-    color: #2c2c2c !important;
+    background-color: var(--bg) !important;
+  }
+  body, h1, h2, h3, p, span, a, li, strong {
+    color: var(--text) !important;
+  }
+  .about-mediums, .contact-email, .contact-socials li, .contact-socials a {
+    color: var(--text-light) !important;
+  }
+  .about-divider, .about-divider--second {
+    background: var(--text) !important;
+  }
+  .pieces-label {
+    fill: var(--text) !important;
+  }
+  .hero-circle__title {
+    color: #bbb !important;
   }
 }
 
