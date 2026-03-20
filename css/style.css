@@ -74,6 +74,7 @@ img {
   height: 100vh;
   position: relative;
   overflow: hidden;
+  scroll-margin-top: 0;
 }
 
 /* Decorative circles */
@@ -94,15 +95,15 @@ img {
 /* All home circles share one size anchor:
    the smaller of 90% viewport width or the vertical space above the nav (~100vh - 7rem). */
 .home {
-  --hero: min(90vw, calc(100vh - 10rem));
+  --hero: min(80vw, calc(100vh - 10rem));
 }
 
 /* Marble circle — desktop: offset from top-left corner */
 .deco-circle--top-left {
     width: calc(var(--hero) * 0.25);
     height: calc(var(--hero) * 0.25);
-    top: 3%;
-    left: 3%;
+    top: 7%;
+    left: 7%;
 }
 
 .deco-circle--bottom-left {
@@ -112,12 +113,12 @@ img {
   left: calc(43% - var(--hero) * 0.45);
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .deco-circle--top-left {
     width: calc(var(--hero) * 0.22);
     height: calc(var(--hero) * 0.22);
-    top: 3%;
-    left: 3%;
+    top: 7%;
+    left: 7%;
   }
   .deco-circle--bottom-left {
     width: calc(var(--hero) * 0.13);
@@ -132,8 +133,8 @@ img {
   .deco-circle--top-left {
     width: calc(var(--hero) * 0.25);
     height: calc(var(--hero) * 0.25);
-    top: 2%;
-    left: 2%;
+    top: 7%;
+    left: 7%;
   }
   .deco-circle--bottom-left {
     width: calc(var(--hero) * 0.13);
@@ -184,7 +185,7 @@ img {
 /* Central image circle — ~20% inset from outer edge */
 .hero-circle__image {
   position: absolute;
-  inset: 11%;
+  inset: 20%;
   border-radius: 50%;
   overflow: hidden;
   background: #111;
@@ -264,6 +265,8 @@ img {
   font-size: 1.05rem;
   font-style: italic;
   color: var(--text-light);
+  margin-left: 2rem;
+  letter-spacing: 0.05em;
 }
 
 .about-divider--second {
@@ -285,7 +288,7 @@ img {
 
 .about-artists p {
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 400;
   margin-bottom: 0.6rem;
 }
 
@@ -337,12 +340,12 @@ img {
   fill: #bbb;
 }
 
-.pieces-circles-svg a {
+.pieces-circle-link {
   cursor: pointer;
 }
 
-.pieces-circles-svg a:hover circle,
-.pieces-circles-svg a:hover image {
+.pieces-circle-link:hover circle,
+.pieces-circle-link:hover image {
   filter: brightness(0.85);
   transition: filter 0.3s;
 }

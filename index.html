@@ -12,7 +12,8 @@
 </head>
 <body>
 
-  <main class="home">
+  <!-- ===== HOME ===== -->
+  <section id="home" class="home">
     <!-- Decorative circle: top-left (salt marble texture) -->
     <div class="deco-circle deco-circle--top-left">
       <img src="images/optimized/marble-texture.jpg" alt="Salt crystal texture">
@@ -40,10 +41,13 @@
       <!-- Inner ring: poetic text — full circle, English then Spanish -->
       <svg class="hero-circle__poem-ring" viewBox="0 0 464 464">
         <defs>
-          <path id="poem-circle" d="M 232,232 m -200,0 a 200,200 0 1,1 400,0 a 200,200 0 1,1 -400,0" />
+          <path id="poem-circle" d="M 232,232 m -175,0 a 175,175 0 1,1 350,0 a 175,175 0 1,1 -350,0" />
         </defs>
         <text font-family="'Cormorant Garamond', Georgia, serif" font-size="13.5" fill="#444" font-style="italic">
-          <textPath id="poem-ring-text" href="#poem-circle"></textPath>
+          <textPath id="poem-ring-top" href="#poem-circle"></textPath>
+        </text>
+        <text font-family="'Cormorant Garamond', Georgia, serif" font-size="13.5" fill="#444" font-style="italic">
+          <textPath id="poem-ring-bottom" href="#poem-circle"></textPath>
         </text>
       </svg>
 
@@ -53,16 +57,213 @@
         <span class="hero-circle__title">sal(t) collective</span>
       </div>
     </div>
-  </main>
+  </section>
 
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="about-page">
+    <h2 class="page-title">About</h2>
+
+    <p class="about-text">
+      We are two diasporic artists linked by the connective tissue of waters between us and &lsquo;home&rsquo;: the Indian ocean, the Pacific Coast of the choco region and the Philippine Sea. We are moved by song as living prayer, and the honouring of death~transformation in its right time. We know we are land(s) who rise//strive to keep singing.
+    </p>
+
+    <div class="about-divider"></div>
+
+    <div class="about-lower">
+      <p class="about-mediums">mediums: sound. presence. skin. sculpture.</p>
+
+      <div class="about-divider about-divider--second"></div>
+
+      <div class="about-lower__image">
+        <div class="circle-image">
+          <img src="images/optimized/about-pouring.jpg" alt="Pouring salt into the earth">
+        </div>
+      </div>
+
+      <div class="about-artists">
+        <p><strong>Azul Carolina Duque:</strong>  was born and raised in Colombia, between the Andes mountains and the Pacific coast of Latin America, Azul plays and learns through the art-life practices of music composition, clowning, facilitation, grief-tending, and performance. As a former member of the Gesturing Towards Decolonial Futures collective, she is drawn to the questions that surface as modern certainties fray, and to the forms of care, presence, and honesty needed in collapsing times. She holds a Master’s degree in Society, Culture, Politics and Education from the University of British Columbia.</p>
+        <p><strong>Kyra Royo Fay:</strong> is a Filipina-American multi-undisciplinary artist, educator, and facilitator living on the unceded territories of the Lək̓ʷəŋən and W̱SÁNEĆ Nations. Born and raised in the archipelago of Indonesia, her work is shaped by the textures of diasporic identity, ecological kinship, and ancestral entanglement. She is deeply committed to water as connective tissue, land as kin, and art as a way to host tensions that don’t necessarily resolve, but instead open space for complexity, grief, love, and contradictory truths to coexist.
+Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilience from the University of British Columbia and is currently pursuing an MA in Art Education at the University of Victoria. Her practice spans performance, and arts-based facilitation, often grounded in community settings and land based inquiry.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PIECES ===== -->
+  <section id="pieces" class="pieces-page">
+    <h2 class="page-title">Pieces</h2>
+
+    <div class="pieces-categories">
+      <svg class="pieces-circles-svg" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <clipPath id="clip-artistic"><circle cx="170" cy="350" r="130"/></clipPath>
+          <path id="orbit-artistic-cw" />
+          <path id="orbit-artistic-ccw" />
+
+          <clipPath id="clip-audiovisual"><circle cx="380" cy="290" r="165"/></clipPath>
+          <path id="orbit-audiovisual-cw" />
+          <path id="orbit-audiovisual-ccw" />
+
+          <clipPath id="clip-performance"><circle cx="640" cy="320" r="210"/></clipPath>
+          <path id="orbit-performance-cw" />
+          <path id="orbit-performance-ccw" />
+        </defs>
+
+        <!-- Circle 1: Artistic (smallest, back) -->
+        <g class="pieces-circle-link" data-target="artistic" style="cursor:pointer">
+          <circle cx="170" cy="350" r="130"/>
+          <image href="images/optimized/pieces-artistic.jpg" x="40" y="220" width="260" height="260" clip-path="url(#clip-artistic)" preserveAspectRatio="xMidYMid slice"></image>
+        </g>
+        <text class="pieces-label pieces-label--small">
+          <textPath href="#orbit-artistic-ccw" startOffset="0%">Artistic/educational experiments</textPath>
+        </text>
+
+        <!-- Circle 2: Audio/Visual (medium, middle) -->
+        <g class="pieces-circle-link" data-target="audiovisual" style="cursor:pointer">
+          <circle cx="380" cy="290" r="165"/>
+          <image href="images/optimized/pieces-audiovisual.jpg" x="215" y="125" width="330" height="330" clip-path="url(#clip-audiovisual)" preserveAspectRatio="xMidYMid slice"></image>
+        </g>
+        <text class="pieces-label">
+          <textPath href="#orbit-audiovisual-cw" startOffset="35%">Audio/Visual</textPath>
+        </text>
+
+        <!-- Circle 3: Performance (largest, front) -->
+        <g class="pieces-circle-link" data-target="performance" style="cursor:pointer">
+          <circle cx="640" cy="320" r="210"/>
+          <image href="images/optimized/pieces-performance.jpg" x="430" y="110" width="420" height="420" clip-path="url(#clip-performance)" preserveAspectRatio="xMidYMid slice"></image>
+        </g>
+        <text class="pieces-label">
+          <textPath href="#orbit-performance-ccw" startOffset="18%">Performance/facilitation</textPath>
+        </text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===== Artistic / Educational Experiments ===== -->
+  <section id="artistic" class="pieces-section">
+    <div class="pieces-section__header">
+      <h2 class="pieces-section__title">Artistic / Educational Experiments</h2>
+    </div>
+    <div class="pieces-grid">
+      <div class="piece-card">
+        <img src="images/optimized/pieces-audiovisual.jpg" alt="Forest walks">
+        <div class="piece-card__overlay">
+          <span class="piece-card__title">Forest walks</span>
+        </div>
+      </div>
+      <div class="piece-card">
+        <img src="images/optimized/pieces-artistic.jpg" alt="Radical Tenderness Recording">
+        <div class="piece-card__overlay">
+          <span class="piece-card__title">Radical Tenderness Recording</span>
+        </div>
+      </div>
+      <div class="piece-card">
+        <img src="images/optimized/pieces-artistic.jpg" alt="Undergrowth cards">
+        <div class="piece-card__overlay">
+          <span class="piece-card__title">Undergrowth cards</span>
+        </div>
+      </div>
+      <div class="piece-card">
+        <img src="images/optimized/pieces-audiovisual.jpg" alt="R.E.C">
+        <div class="piece-card__overlay">
+          <span class="piece-card__title">R.E.C</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Audio/Visual ===== -->
+  <section id="audiovisual" class="pieces-section">
+    <h2 class="pieces-section__title" style="text-align: right;">Audio/Visual</h2>
+    <div class="pieces-grid pieces-grid--two">
+      <div class="piece-card">
+        <img src="images/optimized/pieces-audiovisual.jpg" alt="Agua Piel y Sal">
+        <div class="piece-card__overlay">
+          <span class="piece-card__title">Agua Piel y Sal</span>
+        </div>
+      </div>
+      <div class="piece-card">
+        <img src="images/optimized/pieces-artistic.jpg" alt="Recordings">
+        <div class="piece-card__overlay">
+          <span class="piece-card__title">Recordings</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Performance / Facilitation ===== -->
+  <section id="performance" class="pieces-section">
+    <h2 class="pieces-section__title">Performance/Facilitation</h2>
+    <div class="pieces-grid">
+      <div class="piece-card">
+        <img src="images/optimized/pieces-performance.jpg" alt="Vines Arts Festival">
+        <div class="piece-card__overlay">
+          <span class="piece-card__title">Vines Arts Festival</span>
+        </div>
+      </div>
+      <div class="piece-card">
+        <img src="images/optimized/pieces-audiovisual.jpg" alt="OnSite! Hatch Gallery">
+        <div class="piece-card__overlay">
+          <span class="piece-card__title">OnSite! Hatch Gallery</span>
+        </div>
+      </div>
+      <div class="piece-card">
+        <img src="images/optimized/pieces-artistic.jpg" alt="Mamtagila Fundraiser">
+        <div class="piece-card__overlay">
+          <span class="piece-card__title">Mamtagila Fundraiser</span>
+        </div>
+      </div>
+    </div>
+    <div class="pieces-grid" style="margin-top: 1.5rem;">
+      <div class="piece-card">
+        <img src="images/optimized/pieces-audiovisual.jpg" alt="T(end)ing Time">
+        <div class="piece-card__overlay">
+          <span class="piece-card__title">T(end)ing Time</span>
+        </div>
+      </div>
+      <div class="piece-card">
+        <img src="images/optimized/pieces-performance.jpg" alt="Sonaciones">
+        <div class="piece-card__overlay">
+          <span class="piece-card__title">Sonaciones</span>
+        </div>
+      </div>
+      <div class="piece-card">
+        <img src="images/optimized/pieces-artistic.jpg" alt="Tiny house">
+        <div class="piece-card__overlay">
+          <span class="piece-card__title">Tiny house (title TBD)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="contact-section">
+    <h2 class="page-title">Contact</h2>
+    <p class="contact-email">Please contact us at ?????</p>
+    <ul class="contact-socials">
+      <li>@azuleho_</li>
+      <li><a href="https://www.instagram.com/eletrik_algae/" target="_blank" rel="noopener">@eletrik_algae</a></li>
+    </ul>
+  </section>
+
+  <a href="#home" class="back-to-top" id="backToTop" aria-label="Back to top">&uarr;</a>
+
+  <!-- ===== NAVIGATION ===== -->
   <nav class="site-nav">
-    <a href="about.html">About</a>
-    <a href="pieces.html">Pieces</a>
-    <a href="contact.html">Contact</a>
+    <a href="#about">About</a>
+    <a href="#pieces">Pieces</a>
+    <a href="#contact">Contact</a>
   </nav>
 
   <script>
-    // Repeating ring: repeat a short phrase to fill the full circumference seamlessly.
+    // ===== Back to top button =====
+    const btn = document.getElementById('backToTop');
+    const homeSection = document.getElementById('home');
+    const topObserver = new IntersectionObserver(([entry]) => {
+      btn.classList.toggle('visible', !entry.isIntersecting);
+    }, { threshold: 0 });
+    topObserver.observe(homeSection);
+
+    // ===== Home page text rings =====
     async function fillRepeatingRing(pathId, textPathId, phrase) {
       const path = document.getElementById(pathId);
       const textPath = document.getElementById(textPathId);
@@ -79,38 +280,130 @@
       textPath.setAttribute('lengthAdjust', 'spacing');
     }
 
-    // Single-pass ring: stretch one block of text to fit the circle exactly once.
-    function fitTextToRing(pathId, textPathId, text) {
+    function fitTextToHalf(pathId, textPathId, text, startPercent, fillPercent) {
       const path = document.getElementById(pathId);
       const textPath = document.getElementById(textPathId);
       const circumference = path.getTotalLength();
 
       textPath.textContent = text;
-      textPath.setAttribute('textLength', circumference);
+      textPath.setAttribute('startOffset', startPercent + '%');
+      textPath.setAttribute('textLength', circumference * fillPercent / 100);
       textPath.setAttribute('lengthAdjust', 'spacing');
     }
 
-  
-    async function init() {
-      // Outer ring — repeating phrase
+    async function initRings() {
       const outerRes = await fetch('content/outer-ring.txt');
       const outerPhrase = (await outerRes.text()).trim();
       await fillRepeatingRing('outer-ring', 'outer-ring-text', outerPhrase);
 
-      // Inner ring — English + Spanish, once around the full circle
       const [topRes, bottomRes] = await Promise.all([
         fetch('content/inner-ring-top.txt'),
         fetch('content/inner-ring-bottom.txt')
       ]);
       const topText = (await topRes.text()).trim();
       const bottomText = (await bottomRes.text()).trim();
-      fitTextToRing('poem-circle', 'poem-ring-text', topText + '     ' + bottomText);
-
-      // Convert spinning SVGs to canvas for performance
-      await new Promise(r => requestAnimationFrame(r));
+      // gap = space between the two texts (% of circumference)
+      const gap = 1;
+      const engLen = topText.length;
+      const spaLen = bottomText.length;
+      const totalFill = 100 - gap * 2;
+      const engFill = totalFill * engLen / (engLen + spaLen);
+      const spaFill = totalFill - engFill;
+      fitTextToHalf('poem-circle', 'poem-ring-top', topText, gap / 2, engFill);
+      fitTextToHalf('poem-circle', 'poem-ring-bottom', bottomText, engFill + gap * 1.5, spaFill);
     }
 
-    init();
+    initRings();
+
+    // ===== Pieces page circles =====
+    const svg = document.querySelector('.pieces-circles-svg');
+    const padding = Number(
+      getComputedStyle(document.querySelector('.pieces-categories'))
+        .getPropertyValue('--orbit-padding')
+    ) || 18;
+
+    function orbitPath(cx, cy, r, direction) {
+      const r2 = r + padding;
+      const d2 = r2 * 2;
+      const sweep = direction === 'cw' ? 1 : 0;
+      return `M ${cx},${cy} m -${r2},0 a ${r2},${r2} 0 1,${sweep} ${d2},0 a ${r2},${r2} 0 1,${sweep} -${d2},0`;
+    }
+
+    const layouts = {
+      desktop: {
+        viewBox: '0 0 900 600',
+        circles: [
+          { id: 'artistic',    cx: 170, cy: 350, r: 130, dir: 'ccw', offset: '0%' },
+          { id: 'audiovisual', cx: 380, cy: 290, r: 165, dir: 'cw',  offset: '18%' },
+          { id: 'performance', cx: 640, cy: 320, r: 210, dir: 'ccw', offset: '18%' },
+        ]
+      },
+      mobile: {
+        viewBox: '0 0 500 960',
+        circles: [
+          { id: 'artistic',    cx: 200, cy: 180,  r: 130, dir: 'cw',  offset: '15%' },
+          { id: 'audiovisual', cx: 270, cy: 400,  r: 165, dir: 'cw',  offset: '35%' },
+          { id: 'performance', cx: 230, cy: 680,  r: 210, dir: 'ccw', offset: '7%' },
+        ]
+      }
+    };
+
+    function applyLayout(layout) {
+      svg.setAttribute('viewBox', layout.viewBox);
+      layout.circles.forEach(c => {
+        const d = c.r * 2;
+        const clip = document.querySelector(`#clip-${c.id} circle`);
+        clip.setAttribute('cx', c.cx);
+        clip.setAttribute('cy', c.cy);
+
+        const link = clip.closest('defs').parentElement
+          .querySelector(`g[data-target="${c.id}"]`);
+        const circle = link.querySelector('circle');
+        circle.setAttribute('cx', c.cx);
+        circle.setAttribute('cy', c.cy);
+        circle.setAttribute('r', c.r);
+
+        const img = link.querySelector('image');
+        img.setAttribute('x', c.cx - c.r);
+        img.setAttribute('y', c.cy - c.r);
+        img.setAttribute('width', d);
+        img.setAttribute('height', d);
+
+        const orbitId = `orbit-${c.id}-${c.dir}`;
+        const orbitEl = document.getElementById(orbitId);
+        orbitEl.setAttribute('d', orbitPath(c.cx, c.cy, c.r, c.dir));
+
+        const textPaths = svg.querySelectorAll('textPath');
+        textPaths.forEach(tp => {
+          const href = tp.getAttribute('href');
+          if (href.startsWith(`#orbit-${c.id}-`)) {
+            tp.setAttribute('href', `#${orbitId}`);
+            tp.setAttribute('startOffset', c.offset);
+          }
+        });
+      });
+    }
+
+    let currentLayout = null;
+    function updateLayout() {
+      const isMobile = window.innerWidth <= 600;
+      const layout = isMobile ? 'mobile' : 'desktop';
+      if (layout !== currentLayout) {
+        currentLayout = layout;
+        applyLayout(layouts[layout]);
+      }
+    }
+
+    updateLayout();
+    window.addEventListener('resize', updateLayout);
+
+    // Click handlers for pieces circles
+    document.querySelectorAll('.pieces-circle-link').forEach(g => {
+      g.addEventListener('click', () => {
+        document.getElementById(g.dataset.target).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
   </script>
+
 </body>
 </html>
