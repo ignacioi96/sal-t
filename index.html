@@ -468,12 +468,14 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
         title: 'Forest walks',
         description: '',
         gallery: ['images/optimized/piece-forest-walks.jpg'],
+        fullGallery: ['images/optimized/fullsize/piece-forest-walks.jpg'],
         link: ''
       },
       'radical-tenderness': {
         title: 'Radical Tenderness Recording',
         description: 'Soundscape by Azul, Kyra and Nadim Wolfgar. Piece by Dani D\'emilia, Vanessa Andreotti.',
         gallery: ['images/optimized/piece-radical-tenderness.jpg'],
+        fullGallery: ['images/optimized/fullsize/piece-radical-tenderness.jpg'],
         link: 'https://decolonialfutures.net/rt-recording/',
         linkText: 'Listen'
       },
@@ -481,12 +483,14 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
         title: 'Undergrowth cards',
         description: '',
         gallery: ['images/optimized/pieces-artistic.jpg'],
+        fullGallery: ['images/optimized/pieces-artistic.jpg'],
         link: ''
       },
       'rec': {
         title: 'R.E.C',
         description: '',
         gallery: ['images/optimized/piece-rec.jpg'],
+        fullGallery: ['images/optimized/fullsize/piece-rec.jpg'],
         link: 'https://exiled-capacities.com/',
         linkText: 'Visit'
       },
@@ -494,12 +498,14 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
         title: 'Agua Piel y Sal',
         description: '',
         gallery: ['images/optimized/piece-agua-piel-y-sal.jpg'],
+        fullGallery: ['images/optimized/fullsize/piece-agua-piel-y-sal.jpg'],
         link: ''
       },
       'recordings': {
         title: 'Recordings',
         description: '',
         gallery: ['images/optimized/pieces-artistic.jpg'],
+        fullGallery: ['images/optimized/pieces-artistic.jpg'],
         link: ''
       },
       'vines': {
@@ -508,6 +514,10 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
         gallery: [
           'images/optimized/piece-vines.jpg',
           'images/optimized/gallery-vines-2.jpg'
+        ],
+        fullGallery: [
+          'images/optimized/fullsize/piece-vines.jpg',
+          'images/optimized/fullsize/gallery-vines-2.jpg'
         ],
         link: ''
       },
@@ -523,12 +533,22 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
           'images/optimized/gallery-onsite-5.jpg',
           'images/optimized/gallery-onsite-6.jpg'
         ],
+        fullGallery: [
+          'images/optimized/fullsize/piece-onsite.jpg',
+          'images/optimized/fullsize/gallery-onsite-1.jpg',
+          'images/optimized/fullsize/gallery-onsite-2.jpg',
+          'images/optimized/fullsize/gallery-onsite-3.jpg',
+          'images/optimized/fullsize/gallery-onsite-4.jpg',
+          'images/optimized/fullsize/gallery-onsite-5.jpg',
+          'images/optimized/fullsize/gallery-onsite-6.jpg'
+        ],
         link: ''
       },
       'hiladi': {
         title: 'Hiladi Fundraiser',
         description: '',
         gallery: ['images/optimized/piece-hiladi.jpg'],
+        fullGallery: ['images/optimized/fullsize/piece-hiladi.jpg'],
         link: ''
       },
       'tending-time': {
@@ -548,18 +568,34 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
           'images/optimized/gallery-tending-10.jpg',
           'images/optimized/gallery-tending-11.jpg'
         ],
+        fullGallery: [
+          'images/optimized/fullsize/piece-tending-time.jpg',
+          'images/optimized/fullsize/gallery-tending-1.jpg',
+          'images/optimized/fullsize/gallery-tending-2.jpg',
+          'images/optimized/fullsize/gallery-tending-3.jpg',
+          'images/optimized/fullsize/gallery-tending-4.jpg',
+          'images/optimized/fullsize/gallery-tending-5.jpg',
+          'images/optimized/fullsize/gallery-tending-6.jpg',
+          'images/optimized/fullsize/gallery-tending-7.jpg',
+          'images/optimized/fullsize/gallery-tending-8.jpg',
+          'images/optimized/fullsize/gallery-tending-9.jpg',
+          'images/optimized/fullsize/gallery-tending-10.jpg',
+          'images/optimized/fullsize/gallery-tending-11.jpg'
+        ],
         link: ''
       },
       'sonaciones': {
         title: 'Sonaciones',
         description: '',
         gallery: ['images/optimized/piece-sonaciones.jpg'],
+        fullGallery: ['images/optimized/fullsize/piece-sonaciones.jpg'],
         link: ''
       },
       'tiny-house': {
         title: 'Tiny house (title TBD)',
         description: '',
         gallery: ['images/optimized/pieces-artistic.jpg'],
+        fullGallery: ['images/optimized/pieces-artistic.jpg'],
         link: ''
       }
     };
@@ -595,10 +631,10 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
       document.body.style.overflow = 'hidden';
     }
 
-    // Clicking the modal image opens lightbox with full gallery
+    // Clicking the modal image opens lightbox with full-resolution gallery
     modalImage.addEventListener('click', () => {
       if (currentPieceData) {
-        openLightbox(currentPieceData.gallery, 0);
+        openLightbox(currentPieceData.fullGallery || currentPieceData.gallery, 0);
       }
     });
 

@@ -417,6 +417,8 @@ img {
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   max-width: 900px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .piece-card {
@@ -425,6 +427,9 @@ img {
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.3s;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .piece-card:hover {
@@ -435,6 +440,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  max-width: 100%;
 }
 
 .piece-card__overlay {
@@ -504,6 +510,7 @@ img {
   justify-content: center;
   text-align: center;
   padding: 5rem 6% 8rem;
+  box-sizing: border-box;
 }
 
 .contact-section .page-title {
@@ -534,6 +541,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50%;
 }
 
 .contact-person__info {
