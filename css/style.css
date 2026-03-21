@@ -595,16 +595,19 @@ img {
    =============================== */
 .site-footer {
   text-align: center;
-  padding: 2rem 10%;
-  font-size: 0.85rem;
+  padding: 1.5rem 6%;
+  font-size: 0.8rem;
   color: var(--text-light);
-  line-height: 1.6;
-  max-width: 600px;
-  margin: 0 auto;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.site-footer p {
+  margin: 0;
 }
 
 .site-footer p + p {
-  margin-top: 0.5rem;
+  margin-top: 0.3rem;
   font-size: 0.75rem;
   font-style: italic;
 }
@@ -872,5 +875,12 @@ img {
   }
   .about-divider--second {
     margin-left: 33vw;
+  }
+  .site-footer {
+    padding: 1.5rem 8%;
+    font-size: 0.75rem;
+  }
+  .site-footer p + p {
+    font-size: 0.65rem;
   }
 }
