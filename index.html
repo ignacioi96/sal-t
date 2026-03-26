@@ -145,7 +145,7 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
     <div class="pieces-section__header">
       <h2 class="pieces-section__title">Artistic / Educational Experiments</h2>
     </div>
-    <div class="pieces-grid">
+    <div class="pieces-grid pieces-grid--two" style="margin-left: 0;">
       <div class="piece-card" data-piece="forest-walks">
         <img src="images/optimized/piece-forest-walks.jpg" alt="Forest walks">
         <div class="piece-card__overlay">
@@ -153,23 +153,9 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
         </div>
       </div>
       <div class="piece-card" data-piece="radical-tenderness">
-        <img src="images/optimized/piece-radical-tenderness.jpg" alt="Radical Tenderness Recording">
+        <img src="images/optimized/piece-radical-tenderness.jpg" alt="Co-sense with Radical Tenderness">
         <div class="piece-card__overlay">
-          <span class="piece-card__title">Radical Tenderness Recording</span>
-        </div>
-      </div>
-      <div class="piece-card" data-piece="undergrowth">
-        <img src="images/optimized/pieces-artistic.jpg" alt="Undergrowth cards">
-        <div class="piece-card__overlay">
-          <span class="piece-card__title">Undergrowth cards</span>
-        </div>
-      </div>
-    </div>
-    <div class="pieces-bottom-row">
-      <div class="piece-card" data-piece="rec">
-        <img src="images/optimized/piece-rec.jpg" alt="R.E.C">
-        <div class="piece-card__overlay">
-          <span class="piece-card__title">R.E.C</span>
+          <span class="piece-card__title">Co-sense with Radical Tenderness</span>
         </div>
       </div>
     </div>
@@ -213,7 +199,7 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
       <div class="piece-card" data-piece="hiladi">
         <img src="images/optimized/piece-hiladi.jpg" alt="Hiladi Fundraiser">
         <div class="piece-card__overlay">
-          <span class="piece-card__title">Hiladi Fundraiser</span>
+          <span class="piece-card__title">Undergrowth Performance</span>
         </div>
       </div>
     </div>
@@ -233,7 +219,7 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
       <div class="piece-card" data-piece="tiny-house">
         <img src="images/optimized/pieces-artistic.jpg" alt="Tiny house">
         <div class="piece-card__overlay">
-          <span class="piece-card__title">Tiny house (title TBD)</span>
+          <span class="piece-card__title">Embodied Workshops for Tiny House</span>
         </div>
       </div>
     </div>
@@ -461,41 +447,27 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
     // ===== Piece modal system =====
     const pieceData = {
       'forest-walks': {
-        title: 'Forest walks',
-        description: '',
+        title: 'Forest Walks',
+        description: 'Published in collaboration with Musagetes and Peter Wall Institute for Advanced Studies. This series of forest walk invitations offers 10 exercises of (un)learning based on excerpts from texts written by Indigenous authors that call for a decolonization of our ways of thinking, feeling, relating, sensing, and imagining.\n\nThis piece was developed while we were members of GTDF collective, and have been supported and inspired by GTDF pedagogy and its members.',
         gallery: ['images/optimized/piece-forest-walks.jpg'],
         fullGallery: ['images/optimized/fullsize/piece-forest-walks.jpg'],
         link: ''
       },
       'radical-tenderness': {
-        title: 'Radical Tenderness Recording',
-        description: 'Soundscape by Azul, Kyra and Nadim Wolfgar. Piece by Dani D\'emilia, Vanessa Andreotti.',
+        title: 'Co-sense with Radical Tenderness',
+        description: 'Piece created in the context of the Gesturing Towards Decolonial Futures Collective. Soundscape by Azul, Kyra and Nadim Wolfgar. Piece by Dani D\'emilia, Vanessa Andreotti.\n\nThis piece was developed while we were members of GTDF collective, and have been supported and inspired by GTDF pedagogy and its members.',
         gallery: ['images/optimized/piece-radical-tenderness.jpg'],
         fullGallery: ['images/optimized/fullsize/piece-radical-tenderness.jpg'],
         link: 'https://decolonialfutures.net/rt-recording/',
         linkText: 'Listen'
-      },
-      'undergrowth': {
-        title: 'Undergrowth cards',
-        description: '',
-        gallery: ['images/optimized/pieces-artistic.jpg'],
-        fullGallery: ['images/optimized/pieces-artistic.jpg'],
-        link: ''
-      },
-      'rec': {
-        title: 'R.E.C',
-        description: '',
-        gallery: ['images/optimized/piece-rec.jpg'],
-        fullGallery: ['images/optimized/fullsize/piece-rec.jpg'],
-        link: 'https://exiled-capacities.com/',
-        linkText: 'Visit'
       },
       'agua-piel-y-sal': {
         title: 'Agua Piel y Sal',
         description: '',
         gallery: ['images/optimized/piece-agua-piel-y-sal.jpg'],
         fullGallery: ['images/optimized/fullsize/piece-agua-piel-y-sal.jpg'],
-        link: ''
+        link: 'https://www.youtube.com/watch?v=qu-dzGfzEFA&t=3s',
+        linkText: 'Watch'
       },
       'recordings': {
         title: 'Recordings',
@@ -506,7 +478,7 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
       },
       'vines': {
         title: 'Vines Arts Festival',
-        description: '',
+        description: 'Performance at Vines 2024 Performance Art Festival, Vancouver BC.',
         gallery: [
           'images/optimized/piece-vines.jpg',
           'images/optimized/gallery-vines-2.jpg'
@@ -515,11 +487,12 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
           'images/optimized/fullsize/piece-vines.jpg',
           'images/optimized/fullsize/gallery-vines-2.jpg'
         ],
-        link: ''
+        link: 'https://www.instagram.com/p/DJmdzw4pmLu/',
+        linkText: 'View'
       },
       'onsite': {
         title: 'OnSite! Hatch Gallery',
-        description: '',
+        description: 'OnSite Performance Festival, Hatch Gallery, 2023.',
         gallery: [
           'images/optimized/piece-onsite.jpg',
           'images/optimized/gallery-onsite-1.jpg',
@@ -538,18 +511,19 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
           'images/optimized/fullsize/gallery-onsite-5.jpg',
           'images/optimized/fullsize/gallery-onsite-6.jpg'
         ],
-        link: ''
+        link: 'https://www.instagram.com/p/CqJP7cIPNBc/',
+        linkText: 'View Flyer'
       },
       'hiladi': {
-        title: 'Hiladi Fundraiser',
-        description: '',
+        title: 'Undergrowth Performance',
+        description: 'Audience interactive theater piece for Hiladi Fundraiser and Indigenous Matriarch land re-matriation.',
         gallery: ['images/optimized/piece-hiladi.jpg'],
         fullGallery: ['images/optimized/fullsize/piece-hiladi.jpg'],
         link: ''
       },
       'tending-time': {
         title: 'T(end)ing Time',
-        description: '',
+        description: 'An embodied inquiry into Death, Grief and Loss. Practices for holding difficult conversations at the edge of modernity\'s collapse. In collaboration with Haruko Okano and Bernadine Fox.',
         gallery: [
           'images/optimized/piece-tending-time.jpg',
           'images/optimized/gallery-tending-1.jpg',
@@ -588,8 +562,8 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
         link: ''
       },
       'tiny-house': {
-        title: 'Tiny house (title TBD)',
-        description: '',
+        title: 'Embodied Workshops for Tiny House',
+        description: 'Coming together in song and play to explore the decolonial potential of our political movements; what solidarity with each other feels like from a visceral and somatic level, and the importance of joining together in song.',
         gallery: ['images/optimized/pieces-artistic.jpg'],
         fullGallery: ['images/optimized/pieces-artistic.jpg'],
         link: ''
@@ -609,7 +583,7 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
       currentPieceData = data;
 
       modalTitle.textContent = data.title;
-      modalDesc.textContent = data.description;
+      modalDesc.innerHTML = data.description.replace(/\n\n/g, '<br><br>');
       modalDesc.style.display = data.description ? '' : 'none';
 
       modalImage.src = data.gallery[0];
@@ -707,6 +681,101 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
     <p>&copy; 2025 sal(t) collective — Azul Duque &amp; Kyra Royo Fay</p>
     <p>All content is property of the artists. No reproduction without explicit consent.</p>
   </footer>
+
+  <!-- Salt particle trail -->
+  <canvas id="saltCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
+  <script>
+  (function() {
+    const canvas = document.getElementById('saltCanvas');
+    const ctx = canvas.getContext('2d');
+    const particles = [];
+    const settled = [];
+    const MAX = 60;
+    const MAX_SETTLED = 800;
+    let lastSpawn = 0;
+    // Height map: tracks pile height at each x pixel
+    let pileHeight;
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      // Rebuild pile height map on resize
+      pileHeight = new Float32Array(canvas.width);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    document.addEventListener('mousemove', function(e) {
+      const now = Date.now();
+      if (now - lastSpawn < 40) return;
+      lastSpawn = now;
+      const count = 1 + Math.floor(Math.random() * 2);
+      for (let i = 0; i < count && particles.length < MAX; i++) {
+        particles.push({
+          x: e.clientX + (Math.random() - 0.5) * 12,
+          y: e.clientY + (Math.random() - 0.5) * 12,
+          vx: (Math.random() - 0.5) * 0.7,
+          vy: Math.random() * 0.5 + 0.3,
+          size: Math.random() * 2.5 + 1.5,
+          life: 1,
+          decay: Math.random() * 0.01 + 0.006
+        });
+      }
+    });
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw settled grains
+      ctx.globalAlpha = 0.85;
+      ctx.fillStyle = '#e8e4de';
+      for (let i = 0; i < settled.length; i++) {
+        const s = settled[i];
+        ctx.fillRect(s.x, s.y, s.size, s.size);
+      }
+
+      // Update & draw falling particles
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.04;
+        p.life -= p.decay;
+
+        const px = Math.floor(p.x);
+        const floor = canvas.height - (px >= 0 && px < canvas.width ? pileHeight[px] : 0);
+
+        // Grain reached the pile or bottom
+        if (p.y + p.size >= floor) {
+          p.y = floor - p.size;
+          // Update pile height
+          if (px >= 0 && px < canvas.width) {
+            pileHeight[px] += p.size;
+          }
+          // Remove oldest if over limit
+          if (settled.length >= MAX_SETTLED) {
+            const old = settled.shift();
+            const ox = Math.floor(old.x);
+            if (ox >= 0 && ox < canvas.width) {
+              pileHeight[ox] = Math.max(0, pileHeight[ox] - old.size);
+            }
+          }
+          settled.push({ x: p.x, y: p.y, size: p.size });
+          particles.splice(i, 1);
+          continue;
+        }
+
+        if (p.life <= 0) { particles.splice(i, 1); continue; }
+        ctx.globalAlpha = p.life * 0.8;
+        ctx.fillStyle = '#e8e4de';
+        ctx.fillRect(p.x, p.y, p.size, p.size);
+      }
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+  </script>
 
 </body>
 </html>
