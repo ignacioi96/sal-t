@@ -85,7 +85,7 @@
       <div class="about-artists">
         <p><strong>Azul Carolina Duque:</strong>  was born and raised in Colombia, between the Andes mountains and the Pacific coast of Latin America, Azul plays and learns through the art-life practices of music composition, clowning, facilitation, grief-tending, and performance. As a former member of the Gesturing Towards Decolonial Futures collective, she is drawn to the questions that surface as modern certainties fray, and to the forms of care, presence, and honesty needed in collapsing times. She holds a Master’s degree in Society, Culture, Politics and Education from the University of British Columbia.</p>
         <p><strong>Kyra Royo Fay:</strong> is a Filipina-American multi-undisciplinary artist, educator, and facilitator living on the unceded territories of the Lək̓ʷəŋən and W̱SÁNEĆ Nations. Born and raised in the archipelago of Indonesia, her work is shaped by the textures of diasporic identity, ecological kinship, and ancestral entanglement. She is deeply committed to water as connective tissue, land as kin, and art as a way to host tensions that don’t necessarily resolve, but instead open space for complexity, grief, love, and contradictory truths to coexist.
-Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilience from the University of British Columbia and is currently pursuing an MA in Art Education at the University of Victoria. Her practice spans performance, and arts-based facilitation, often grounded in community settings and land based inquiry.</p>
+Her practice spans performance, and arts-based facilitation, often grounded in community settings and land based inquiry.</p>
       </div>
     </div>
   </section>
@@ -556,14 +556,14 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
       },
       'sonaciones': {
         title: 'Sonaciones',
-        description: '',
+        description: 'In person workshops to enter sound as a living being. Tuning into songs not only as tools for resistance, but as entities that hold us, guide us, and remind us why we continue to show up for each other.',
         gallery: ['images/optimized/piece-sonaciones.jpg'],
         fullGallery: ['images/optimized/fullsize/piece-sonaciones.jpg'],
         link: ''
       },
       'tiny-house': {
         title: 'Embodied Workshops for Tiny House',
-        description: 'Coming together in song and play to explore the decolonial potential of our political movements; what solidarity with each other feels like from a visceral and somatic level, and the importance of joining together in song.',
+        description: 'A series of artistic interventions in resistance to colonial mega-projects in Lekwungen and W̱SÁNEĆ traditional unceded territories. The project involved the construction of a tiny house on a trailer to provide material support towards the blockades, and also to build community around the values and practices of decolonially aspiring solidarity.\n\nComing together in song and play to explore the decolonial potential of our political movements; what solidarity with each other feels like from a visceral and somatic level, and the importance of joining together in song.',
         gallery: ['images/optimized/pieces-artistic.jpg'],
         fullGallery: ['images/optimized/pieces-artistic.jpg'],
         link: ''
@@ -690,17 +690,20 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
     const ctx = canvas.getContext('2d');
     const particles = [];
     const settled = [];
-    const MAX = 60;
-    const MAX_SETTLED = 800;
+    const MAX = 80;
     let lastSpawn = 0;
-    // Height map: tracks pile height at each x pixel
     let pileHeight;
 
     function resize() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      // Rebuild pile height map on resize
       pileHeight = new Float32Array(canvas.width);
+      // Rebuild pile from settled grains
+      for (let i = 0; i < settled.length; i++) {
+        const s = settled[i];
+        const sx = Math.floor(s.x);
+        if (sx >= 0 && sx < canvas.width) pileHeight[sx] += s.size;
+      }
     }
     resize();
     window.addEventListener('resize', resize);
@@ -708,17 +711,27 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
     function spawnBurst(x, y, count) {
       for (let i = 0; i < count && particles.length < MAX; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 2.5 + 1;
+        const speed = Math.random() * 3 + 1.5;
         particles.push({
-          x: x + (Math.random() - 0.5) * 6,
-          y: y + (Math.random() - 0.5) * 6,
+          x: x + (Math.random() - 0.5) * 8,
+          y: y + (Math.random() - 0.5) * 8,
           vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed - 1,
-          size: Math.random() * 2.5 + 1.5,
-          life: 1,
-          decay: Math.random() * 0.01 + 0.006
+          vy: Math.sin(angle) * speed - 1.5,
+          size: Math.random() * 3 + 2.5
         });
       }
+    }
+
+    function drawGrain(x, y, size, alpha) {
+      ctx.globalAlpha = alpha * 0.5;
+      ctx.fillStyle = '#6b6560';
+      ctx.fillRect(x - 0.5, y + 0.5, size + 1, size + 1);
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = '#f5f2ed';
+      ctx.fillRect(x, y, size, size);
+      ctx.globalAlpha = alpha * 0.3;
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(x + 1, y + 1, Math.max(1, size * 0.4), Math.max(1, size * 0.4));
     }
 
     // Desktop: drip on mousemove
@@ -733,9 +746,7 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
           y: e.clientY + (Math.random() - 0.5) * 12,
           vx: (Math.random() - 0.5) * 0.7,
           vy: Math.random() * 0.5 + 0.3,
-          size: Math.random() * 2.5 + 1.5,
-          life: 1,
-          decay: Math.random() * 0.01 + 0.006
+          size: Math.random() * 3 + 2.5
         });
       }
     });
@@ -743,18 +754,16 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
     // Mobile: burst on tap
     document.addEventListener('touchstart', function(e) {
       const t = e.touches[0];
-      spawnBurst(t.clientX, t.clientY, 8 + Math.floor(Math.random() * 6));
+      spawnBurst(t.clientX, t.clientY, 10 + Math.floor(Math.random() * 6));
     });
 
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Draw settled grains
-      ctx.globalAlpha = 0.85;
-      ctx.fillStyle = '#e8e4de';
       for (let i = 0; i < settled.length; i++) {
         const s = settled[i];
-        ctx.fillRect(s.x, s.y, s.size, s.size);
+        drawGrain(s.x, s.y, s.size, 0.9);
       }
 
       // Update & draw falling particles
@@ -762,36 +771,29 @@ Kyra holds a B.A. in Interdisciplinary Studies with a focus on Community Resilie
         const p = particles[i];
         p.x += p.vx;
         p.y += p.vy;
-        p.vy += 0.04;
-        p.life -= p.decay;
+        p.vy += 0.06;
 
         const px = Math.floor(p.x);
         const floor = canvas.height - (px >= 0 && px < canvas.width ? pileHeight[px] : 0);
 
-        // Grain reached the pile or bottom
+        // Grain reached the pile
         if (p.y + p.size >= floor) {
           p.y = floor - p.size;
-          // Update pile height
           if (px >= 0 && px < canvas.width) {
             pileHeight[px] += p.size;
-          }
-          // Remove oldest if over limit
-          if (settled.length >= MAX_SETTLED) {
-            const old = settled.shift();
-            const ox = Math.floor(old.x);
-            if (ox >= 0 && ox < canvas.width) {
-              pileHeight[ox] = Math.max(0, pileHeight[ox] - old.size);
-            }
           }
           settled.push({ x: p.x, y: p.y, size: p.size });
           particles.splice(i, 1);
           continue;
         }
 
-        if (p.life <= 0) { particles.splice(i, 1); continue; }
-        ctx.globalAlpha = p.life * 0.8;
-        ctx.fillStyle = '#e8e4de';
-        ctx.fillRect(p.x, p.y, p.size, p.size);
+        // Off-screen left/right — remove
+        if (p.x < -10 || p.x > canvas.width + 10) {
+          particles.splice(i, 1);
+          continue;
+        }
+
+        drawGrain(p.x, p.y, p.size, 0.85);
       }
       ctx.globalAlpha = 1;
       requestAnimationFrame(draw);
