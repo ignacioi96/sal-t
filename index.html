@@ -599,7 +599,7 @@ Her practice spans performance, and arts-based facilitation, often grounded in c
       if (m) return '<div class="modal__embed-wrap"><iframe src="https://player.vimeo.com/video/' + m[1] + '" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>';
       // Instagram
       m = url.match(/instagram\.com\/(p|reel)\/([\w-]+)/);
-      if (m) return '<blockquote class="instagram-media" data-instgrm-permalink="' + url + '" style="max-width:100%;min-width:280px;width:100%;"></blockquote>';
+      if (m) return '<div class="modal__embed-ig"><blockquote class="instagram-media" data-instgrm-permalink="' + url + '" style="max-width:100%;min-width:280px;width:100%;"></blockquote></div>';
       // SoundCloud
       if (url.includes('soundcloud.com')) return '<div class="modal__embed-wrap modal__embed-wrap--audio"><iframe scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=' + encodeURIComponent(url) + '&color=%23666&auto_play=false&show_artwork=true"></iframe></div>';
       // Bandcamp
@@ -740,6 +740,7 @@ Her practice spans performance, and arts-based facilitation, often grounded in c
     const MAX = 80;
     let lastSpawn = 0;
     let pileHeight;
+    let mouseY = window.innerHeight;
 
     function resize() {
       canvas.width = window.innerWidth;
@@ -783,9 +784,16 @@ Her practice spans performance, and arts-based facilitation, often grounded in c
 
     // Desktop: drip on mousemove
     document.addEventListener('mousemove', function(e) {
+      mouseY = e.clientY;
       const now = Date.now();
       if (now - lastSpawn < 40) return;
       lastSpawn = now;
+      // Don't spawn if pile already reaches the mouse
+      const mx = Math.floor(e.clientX);
+      if (mx >= 0 && mx < canvas.width) {
+        const pileTop = canvas.height - pileHeight[mx];
+        if (pileTop <= e.clientY + 5) return;
+      }
       const count = 1 + Math.floor(Math.random() * 2);
       for (let i = 0; i < count && particles.length < MAX; i++) {
         particles.push({
@@ -802,6 +810,74 @@ Her practice spans performance, and arts-based facilitation, often grounded in c
     document.addEventListener('touchstart', function(e) {
       const t = e.touches[0];
       spawnBurst(t.clientX, t.clientY, 10 + Math.floor(Math.random() * 6));
+    });
+
+    // ===== Click-drag to knock settled grains =====
+    let dragging = false;
+    const KNOCK_RADIUS = 20;
+
+    function knockAt(mx, my) {
+      for (let i = settled.length - 1; i >= 0; i--) {
+        const s = settled[i];
+        const dx = s.x - mx;
+        const dy = s.y - my;
+        if (dx * dx + dy * dy < KNOCK_RADIUS * KNOCK_RADIUS) {
+          // Remove from pile height
+          const sx = Math.floor(s.x);
+          if (sx >= 0 && sx < canvas.width) {
+            pileHeight[sx] = Math.max(0, pileHeight[sx] - s.size);
+          }
+          // Turn back into a falling particle with some scatter
+          const angle = Math.atan2(dy, dx);
+          const speed = Math.random() * 2 + 1;
+          particles.push({
+            x: s.x,
+            y: s.y,
+            vx: Math.cos(angle) * speed + (Math.random() - 0.5),
+            vy: Math.sin(angle) * speed - 1,
+            size: s.size
+          });
+          settled.splice(i, 1);
+        }
+      }
+      // After knocking, grains above the gap need to re-settle.
+      // Unseat any settled grain whose floor moved below it.
+      for (let i = settled.length - 1; i >= 0; i--) {
+        const s = settled[i];
+        const sx = Math.floor(s.x);
+        const floor = canvas.height - (sx >= 0 && sx < canvas.width ? pileHeight[sx] : 0);
+        if (s.y + s.size < floor - 1) {
+          // This grain is floating — turn it into a particle
+          if (sx >= 0 && sx < canvas.width) {
+            pileHeight[sx] = Math.max(0, pileHeight[sx] - s.size);
+          }
+          particles.push({
+            x: s.x,
+            y: s.y,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: 0.1,
+            size: s.size
+          });
+          settled.splice(i, 1);
+        }
+      }
+    }
+
+    canvas.style.pointerEvents = 'none';
+
+    document.addEventListener('mousedown', function(e) {
+      dragging = true;
+      knockAt(e.clientX, e.clientY);
+    });
+    document.addEventListener('mousemove', function(e) {
+      if (dragging) knockAt(e.clientX, e.clientY);
+    });
+    document.addEventListener('mouseup', function() { dragging = false; });
+
+    // Touch drag support
+    document.addEventListener('touchmove', function(e) {
+      const t = e.touches[0];
+      knockAt(t.clientX, t.clientY);
     });
 
     function draw() {

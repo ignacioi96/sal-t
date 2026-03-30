@@ -780,6 +780,16 @@ img {
   display: none;
 }
 
+.modal__embed-ig {
+  overflow: hidden;
+  position: relative;
+}
+
+.modal__embed-ig iframe {
+  clip-path: inset(0 0 155x 0) !important;
+  margin-bottom: -155px !important;
+}
+
 .modal__embed-wrap {
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
